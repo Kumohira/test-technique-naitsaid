@@ -1,0 +1,66 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <mat-card-title>Git Finder</mat-card-title>
+  </mat-card-header>
+
+  <div class="myForm">
+
+    <mat-card class="user-card">
+      <mat-form-field class="user-search">
+        <mat-label>Search</mat-label>
+        <input matInput [placeholder]="placeholder" [(ngModel)]="tipedUser" (keydown.enter)="onSearch(tipedUser)">
+      </mat-form-field>
+    </mat-card>
+
+  </div>
+
+  <div class="myForm">
+
+    <mat-card *ngIf="gitUser" class="user-card">
+
+      <mat-card-header>
+        <div mat-card-avatar [ngStyle]="{backgroundImage: 'url(' + gitUser['avatar_url'] + ')'}" class="user-image"></div>
+        <mat-card-title>{{gitUser['name']}}</mat-card-title>
+        <mat-card-subtitle>{{gitUser['login']}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          {{gitUser['bio']}}
+        </p>
+
+        <p class="spacer">
+          <i class="fas fa-users"></i> {{gitUser['followers']}} followers · {{gitUser['following']}} following · <i class="fas fa-database"></i> {{gitUser['followers']}} Public repos
+        </p>
+
+        <p *ngIf="gitUser['company']">
+          <i class="far fa-building"></i> {{gitUser['company']}}
+        </p>
+        <p *ngIf="gitUser['location']">
+          <i class="fas fa-map-marker-alt"></i> {{gitUser['location']}}
+        </p>
+        <p *ngIf="gitUser['email']">
+          <i class="far fa-envelope"></i> {{gitUser['email']}}
+        </p>
+        <p *ngIf="gitUser['twitter_username']">
+          <i class="fab fa-twitter"></i> {{gitUser['twitter_username']}}
+        </p>
+        <p *ngIf="gitUser['blog']">
+          <i class="fas fa-link"></i> {{gitUser['blog']}}
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button (click)="openNewTab(gitUser['html_url'])"><i class="fab fa-github"></i> Github</button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </div>
+
+  <div class="goto-button">
+    <button mat-raised-button color="primary" (click)="onUrlShortenerPage()">To Url-Shortener <i class="fas fa-arrow-right"></i></button>
+  </div>
+
+</mat-card>
+

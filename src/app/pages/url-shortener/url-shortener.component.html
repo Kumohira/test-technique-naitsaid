@@ -1,0 +1,24 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <mat-card-title>Url Shortener</mat-card-title>
+  </mat-card-header>
+
+  <div class="myForm">
+
+    <mat-card class="user-card">
+      <mat-form-field class="user-search">
+        <input matInput [placeholder]="placeholder" [(ngModel)]="body.long_url" (keydown.enter)="onSubmitUrl(body)">
+      </mat-form-field>
+    </mat-card>
+
+  </div>
+
+  <div class="myForm">
+    <mat-card matRipple *ngIf="shortenedUrl" ngxClipboard [cbContent]="shortenedUrl" class="user-card custom pointer">
+      <p>{{shortenedUrl}} </p> <i class="far fa-copy"></i>
+    </mat-card>
+  </div>
+
+
+</mat-card>
+
